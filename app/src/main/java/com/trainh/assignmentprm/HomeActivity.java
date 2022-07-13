@@ -88,7 +88,6 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
 
     @Override
     public void selectedProduct(Product product) {
-//        startActivity(new Intent(this, HomeActivity.this, ));
         Log.d("selectedProduct", product.getName());
     }
 

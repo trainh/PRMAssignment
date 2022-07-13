@@ -130,9 +130,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductA
                     selectedProduct.selectedProduct(productList.get(getAdapterPosition()));
                 }
             });
-
-
         }
     }
-
 }
