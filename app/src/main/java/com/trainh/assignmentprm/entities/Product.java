@@ -1,26 +1,31 @@
 package com.trainh.assignmentprm.entities;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private int id;
     private int image;
     private String name;
     private double price;
+    private int quantity;
     private String type;
     private String description;
 
-    public Product(int image, String name, double price, String type, String description) {
+    public Product(int image, String name, double price, int quantity, String type, String description) {
         this.image = image;
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
         this.type = type;
         this.description = description;
     }
 
-    public Product(int id, int image, String name, double price, String type, String description) {
+    public Product(int id, int image, String name, double price, int quantity, String type, String description) {
         this.id = id;
         this.image = image;
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
         this.type = type;
         this.description = description;
     }
@@ -55,6 +60,14 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getType() {

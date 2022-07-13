@@ -28,6 +28,7 @@ public class Database extends SQLiteOpenHelper {
     private static final String imageColumn = "image";
     private static final String nameColumn = "name";
     private static final String priceColumn = "price";
+    private static final String quantityColumn = "quantity";
     private static final String typeColumn = "type";
     private static final String descriptionColumn = "descriptionColumn";
 
@@ -53,6 +54,7 @@ public class Database extends SQLiteOpenHelper {
                 imageColumn + " TEXT ," +
                 nameColumn + " TEXT ," +
                 priceColumn + " INTEGER ," +
+                quantityColumn + " INTEGER, " +
                 typeColumn + " TEXT ," +
                 descriptionColumn + " TEXT " +
                 ")");
@@ -82,6 +84,7 @@ public class Database extends SQLiteOpenHelper {
             contentValues.put(imageColumn, product.getImage());
             contentValues.put(nameColumn, product.getName());
             contentValues.put(priceColumn, product.getPrice());
+            contentValues.put(quantityColumn, product.getQuantity());
             contentValues.put(typeColumn, product.getType());
             contentValues.put(descriptionColumn, product.getDescription());
             return sqlite.insert(productTable, null, contentValues) > 0;
