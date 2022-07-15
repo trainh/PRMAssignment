@@ -19,6 +19,7 @@ public class Database extends SQLiteOpenHelper {
 
     private static final String accountTable = "account";
     private static final String productTable = "product";
+    private static final String cartTable = "cart";
 
     private static final String idColumn = "id";
 
@@ -31,6 +32,8 @@ public class Database extends SQLiteOpenHelper {
     private static final String quantityColumn = "quantity";
     private static final String typeColumn = "type";
     private static final String descriptionColumn = "descriptionColumn";
+
+    private static final String idProductColumn = "idProduct";
 
 
 //    public Database(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -57,6 +60,13 @@ public class Database extends SQLiteOpenHelper {
                 quantityColumn + " INTEGER, " +
                 typeColumn + " TEXT ," +
                 descriptionColumn + " TEXT " +
+                ")");
+
+        db.execSQL("CREATE TABLE " + cartTable + "(" +
+                idColumn + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                quantityColumn + " INTEGER ," +
+                idProductColumn + " INTEGER ," +
+                " FOREIGN KEY (" + idProductColumn + ") REFERENCES " + productTable + "(" +idColumn+ ")" +
                 ")");
     }
 

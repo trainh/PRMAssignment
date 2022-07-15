@@ -3,7 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/ACC/PRMAssignment/app/src/main/res/layout/activity_maps.xml" value="0.3605072463768116" />
         <entry key="..\:/CN/CN7/PRM392/AssignmentPRM/app/src/main/res/drawable/edit_button.xml" value="0.3375" />
         <entry key="..\:/CN/CN7/PRM392/AssignmentPRM/app/src/main/res/drawable/edit_text_border.xml" value="0.25" />
         <entry key="..\:/CN/CN7/PRM392/AssignmentPRM/app/src/main/res/drawable/ic_menu_background.xml" value="0.232" />
@@ -16,6 +15,11 @@
         <entry key="..\:/CN/CN7/PRM392/AssignmentPRM/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/CN/CN7/PRM392/AssignmentPRM/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/CN/CN7/PRM392/AssignmentPRM/app/src/main/res/layout/row_product.xml" value="0.5" />
+        <entry key="..\:/PRMAssignment/app/src/main/res/layout/activity_cart.xml" value="0.28541666666666665" />
+        <entry key="..\:/PRMAssignment/app/src/main/res/layout/activity_payment.xml" value="0.28541666666666665" />
+        <entry key="..\:/PRMAssignment/app/src/main/res/layout/oder_dialog.xml" value="0.28541666666666665" />
+        <entry key="..\:/PRMAssignment/app/src/main/res/layout/row_cart.xml" value="0.28541666666666665" />
+        <entry key="..\:/PRMAssignment/app/src/main/res/layout/row_product.xml" value="0.28541666666666665" />
       </map>
     </option>
   </component>
