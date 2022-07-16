@@ -9,13 +9,16 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.trainh.assignmentprm.adapter.ProductAdapter;
 import com.trainh.assignmentprm.database.Database;
 import com.trainh.assignmentprm.entities.Product;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +37,33 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        ImageView noteCart = findViewById(R.id.imageView4);
+        noteCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, CartActivity.class);
+                startActivity(intent);
+            }
+        });
+
+//        Button btnAddToCart = findViewById(R.id.button3);
+//        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(HomeActivity.this, CartTv.class );
+//                startActivity(intent);
+//            }
+//        });
+
+        ImageView imgMaps = findViewById(R.id.imageView2);
+        imgMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         database = new Database(getApplicationContext());
 
@@ -70,7 +100,7 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
         List<Product> products = new ArrayList<Product>();
         Cursor dataProduct = database.GetData("SELECT * FROM product WHERE type = 'Máy tính'");
         while (dataProduct.moveToNext()) {
-            Product product = new Product(dataProduct.getInt(0), dataProduct.getInt(1), dataProduct.getString(2), dataProduct.getDouble(3), dataProduct.getInt(4) ,dataProduct.getString(5), dataProduct.getString(6));
+            Product product = new Product(dataProduct.getInt(0), dataProduct.getInt(1), dataProduct.getString(2), dataProduct.getFloat(3), dataProduct.getInt(4), dataProduct.getString(5), dataProduct.getString(6));
             Log.d("product", dataProduct.getString(2));
             products.add(product);
         }
@@ -81,7 +111,7 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
         List<Product> products = new ArrayList<Product>();
         Cursor dataProduct = database.GetData("SELECT * FROM product WHERE type = 'Bàn phím'");
         while (dataProduct.moveToNext()) {
-            Product product = new Product(dataProduct.getInt(0), dataProduct.getInt(1), dataProduct.getString(2), dataProduct.getDouble(3),dataProduct.getInt(4),  dataProduct.getString(5), dataProduct.getString(6));
+            Product product = new Product(dataProduct.getInt(0), dataProduct.getInt(1), dataProduct.getString(2), dataProduct.getFloat(3), dataProduct.getInt(4), dataProduct.getString(5), dataProduct.getString(6));
             Log.d("product", dataProduct.getString(2));
             products.add(product);
         }
@@ -90,12 +120,8 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
 
     @Override
     public void selectedProduct(Product product) {
-        Log.d("product", product.getName());
-        Intent intent = new Intent(HomeActivity.this, DetailsActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("data", product);
-        startActivity(intent);
-//        startActivity(new Intent(HomeActivity.this, DetailsActivity.class).putExtra("data",  product));
+//        startActivity(new Intent(this, HomeActivity.this, ));
+        Log.d("selectedProduct", product.getName());
     }
 
     @Override

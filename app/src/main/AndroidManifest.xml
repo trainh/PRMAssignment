@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.trainh.assignmentprm">
 
-    <uses-permission android:name="android.permission.SEND_SMS" />
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,11 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AssignmentPRM"
         tools:targetApi="31">
+        <!--        <meta-data-->
+        <!--            android:name="com.google.android.geo.API_KEY"-->
+        <!--            android:value="YOUR_API_KEY" />-->
+        <activity
+            android:name=".MapsActivity"
+            android:exported="false"
+            android:label="@string/app_name" />
+
         <activity
             android:name=".CartActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailsActivity"
+            android:name=".PaymentActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"

@@ -1,17 +1,15 @@
 package com.trainh.assignmentprm.entities;
 
-import java.io.Serializable;
-
-public class Product implements Serializable {
+public class Product {
     private int id;
     private int image;
     private String name;
-    private double price;
+    private float price;
     private int quantity;
     private String type;
     private String description;
 
-    public Product(int image, String name, double price, int quantity, String type, String description) {
+    public Product(int image, String name, float price, int quantity, String type, String description) {
         this.image = image;
         this.name = name;
         this.price = price;
@@ -20,7 +18,7 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public Product(int id, int image, String name, double price, int quantity, String type, String description) {
+    public Product(int id, int image, String name, float price, int quantity, String type, String description) {
         this.id = id;
         this.image = image;
         this.name = name;
@@ -28,6 +26,14 @@ public class Product implements Serializable {
         this.quantity = quantity;
         this.type = type;
         this.description = description;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public int getId() {
@@ -54,20 +60,12 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public String getType() {

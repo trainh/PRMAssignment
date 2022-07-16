@@ -1,14 +1,18 @@
 package com.trainh.assignmentprm;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.trainh.assignmentprm.database.Database;
+import com.trainh.assignmentprm.entities.Product;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -30,6 +34,29 @@ public class PaymentActivity extends AppCompatActivity {
             public void onClick(View view) {
                 dathang();
             }
+
+
+//            String selectQuery = "SELECT * FROM cartable";
+//            Database database = DatabaseManager.getInstance().openDatabase();
+//            Cursor cursor = database.rawQuery(selectQuery, null);
+//
+//    if (cursor.moveToNext()) {
+//                do {
+//                    Product product = new product();
+//                    product.setId(Integer.parseInt(cursor.getString(0)));
+//
+//                    product.setName(cursor.getString(1));
+//                    product.setPrice(cursor.getString(2));
+//                    product.setQuantity(cursor.getString(3));
+//                    product.setMealtotal((Double.parseDouble(cursor.getString(3)) * Double.parseDouble(cursor.getString(4)) + ""));
+//
+//                    Product.add(product);
+//
+//                } while (cursor.moveToNext());
+//            }
+//
+//            double totalPrices = 0;
+
         });
     }
 
@@ -51,8 +78,8 @@ public class PaymentActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Button exit = dialog.findViewById(R.id.btnExit);
-        exit.setOnClickListener(new View.OnClickListener() {
+        Button btnexit = dialog.findViewById(R.id.btnExit);
+        btnexit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), MainActivity.class);

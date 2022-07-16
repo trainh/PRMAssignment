@@ -29,80 +29,80 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductA
     private Context context;
     public SelectedProduct selectedProduct;
 
-    public ProductAdapter(List<Product> productList, SelectedProduct selectedProduct) {
-        this.productList = productList;
-        this.getProductListFiltered = productList;
-        this.selectedProduct = selectedProduct;
-    }
+        public ProductAdapter(List<Product> productList, SelectedProduct selectedProduct) {
+            this.productList = productList;
+            this.getProductListFiltered = productList;
+            this.selectedProduct = selectedProduct;
+        }
 
 
-    @NonNull
-    @Override
-    public ProductAdapter.ProductAdapterVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
+        @NonNull
+        @Override
+        public ProductAdapter.ProductAdapterVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            context = parent.getContext();
 
-        return new ProductAdapterVh(LayoutInflater.from(context).inflate(R.layout.row_product,null));
-    }
+            return new ProductAdapterVh(LayoutInflater.from(context).inflate(R.layout.row_product,null));
+        }
 
-    @Override
-    public void onBindViewHolder(@NonNull ProductAdapter.ProductAdapterVh holder, int position) {
+        @Override
+        public void onBindViewHolder(@NonNull ProductAdapter.ProductAdapterVh holder, int position) {
 
-        Product product = productList.get(position);
-        DecimalFormat formatter = new DecimalFormat("#,###,###");
+            Product product = productList.get(position);
+            DecimalFormat formatter = new DecimalFormat("#,###,###");
 
-        String username = product.getName();
-        String price = formatter.format(product.getPrice()) + " vnd";
-        int image = product.getImage();
-        holder.tvName.setText(username);
-        holder.tvPrice.setText(price);
-        holder.ivProduct.setImageResource(image);
-    }
+            String username = product.getName();
+            String price = formatter.format(product.getPrice()) + " vnd";
+            int image = product.getImage();
+            holder.tvName.setText(username);
+            holder.tvPrice.setText(price);
+            holder.ivProduct.setImageResource(image);
+        }
 
-    @Override
-    public int getItemCount() {
-        return productList.size();
-    }
+        @Override
+        public int getItemCount() {
+            return productList.size();
+        }
 
-    @Override
-    public Filter getFilter() {
+        @Override
+        public Filter getFilter() {
 
-        Filter filter = new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                FilterResults filterResults = new FilterResults();
+            Filter filter = new Filter() {
+                @Override
+                protected FilterResults performFiltering(CharSequence charSequence) {
+                    FilterResults filterResults = new FilterResults();
 
-                if(charSequence == null | charSequence.length() == 0){
-                    filterResults.count = getProductListFiltered.size();
-                    filterResults.values = getProductListFiltered;
+                    if(charSequence == null | charSequence.length() == 0){
+                        filterResults.count = getProductListFiltered.size();
+                        filterResults.values = getProductListFiltered;
 
-                }else{
-                    String searchChr = charSequence.toString().toLowerCase();
+                    }else{
+                        String searchChr = charSequence.toString().toLowerCase();
 
-                    List<Product> resultData = new ArrayList<>();
+                        List<Product> resultData = new ArrayList<>();
 
-                    for(Product userModel: getProductListFiltered){
-                        if(userModel.getName().toLowerCase().contains(searchChr)){
-                            resultData.add(userModel);
+                        for(Product userModel: getProductListFiltered){
+                            if(userModel.getName().toLowerCase().contains(searchChr)){
+                                resultData.add(userModel);
+                            }
                         }
-                    }
-                    filterResults.count = resultData.size();
-                    filterResults.values = resultData;
+                        filterResults.count = resultData.size();
+                        filterResults.values = resultData;
 
+                    }
+
+                    return filterResults;
                 }
 
-                return filterResults;
-            }
+                @Override
+                protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
 
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                    productList = (List<Product>) filterResults.values;
+                    notifyDataSetChanged();
 
-                productList = (List<Product>) filterResults.values;
-                notifyDataSetChanged();
-
-            }
-        };
-        return filter;
-    }
+                }
+            };
+            return filter;
+        }
 
 
     public interface SelectedProduct{
