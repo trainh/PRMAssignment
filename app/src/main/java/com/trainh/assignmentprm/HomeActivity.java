@@ -32,6 +32,7 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
     ProductAdapter productAdapterComputer;
     ProductAdapter productAdapterKeyboard;
     ImageView cart;
+    TextView tvNoti;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,8 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
         rvComputer = (RecyclerView) findViewById(R.id.rvComputer);
         rvKeyboard = (RecyclerView) findViewById(R.id.rvKeyboard);
         cart = (ImageView) findViewById(R.id.ivCart);
+        tvNoti = (TextView) findViewById(R.id.tvNoti);
+
 
         LinearLayoutManager linearLayoutManagerComputer = new LinearLayoutManager(this);
         linearLayoutManagerComputer.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -67,6 +70,8 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
         rvComputer.setAdapter(productAdapterComputer);
         rvKeyboard.setAdapter(productAdapterKeyboard);
 
+        tvNoti.setText(String.valueOf(getProduct().size()));
+
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +79,17 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
                 startActivity(intent);
             }
         });
+    }
+
+    private List<Product> getProduct() {
+        List<Product> products = new ArrayList<Product>();
+        Cursor dataProduct = database.GetData("SELECT cart.id, product.id, product.image, product.name, product.price, cart.quantity FROM cart INNER JOIN product ON cart.idProduct = product.id");
+        while (dataProduct.moveToNext()) {
+            Product product = new Product(dataProduct.getInt(0), dataProduct.getInt(1), dataProduct.getInt(2), dataProduct.getString(3), dataProduct.getDouble(4), dataProduct.getInt(5));
+            Log.d("product", dataProduct.getString(2));
+            products.add(product);
+        }
+        return products;
     }
 
     private List<Product> getProductComputer() {
