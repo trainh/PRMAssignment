@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AssignmentPRM"
         tools:targetApi="31">
         <activity
+            android:name=".MapsActivity"
+            android:exported="false" />
+        <activity
             android:name=".Register"
             android:exported="false" />
         <activity
