@@ -15,6 +15,11 @@
         <entry key="..\:/CN/CN7/PRM392/AssignmentPRM/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/CN/CN7/PRM392/AssignmentPRM/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/CN/CN7/PRM392/AssignmentPRM/app/src/main/res/layout/row_product.xml" value="0.5" />
+<<<<<<< HEAD
+        <entry key="..\:/Workspace/DevCode/Android Studio/PRMAssignment/app/src/main/res/layout/activity_home.xml" value="0.16576086956521738" />
+        <entry key="..\:/Workspace/DevCode/Android Studio/PRMAssignment/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Workspace/DevCode/Android Studio/PRMAssignment/app/src/main/res/layout/activity_register.xml" value="0.1" />
+=======
         <entry key="..\:/PRMAssignment/app/src/main/res/layout/activity_cart.xml" value="0.28541666666666665" />
         <entry key="..\:/PRMAssignment/app/src/main/res/layout/activity_details.xml" value="0.371875" />
         <entry key="..\:/PRMAssignment/app/src/main/res/layout/activity_home.xml" value="0.15555555555555556" />
@@ -22,6 +27,7 @@
         <entry key="..\:/PRMAssignment/app/src/main/res/layout/oder_dialog.xml" value="0.28541666666666665" />
         <entry key="..\:/PRMAssignment/app/src/main/res/layout/row_cart.xml" value="0.5" />
         <entry key="..\:/PRMAssignment/app/src/main/res/layout/row_product.xml" value="0.28541666666666665" />
+>>>>>>> cart
       </map>
     </option>
   </component>

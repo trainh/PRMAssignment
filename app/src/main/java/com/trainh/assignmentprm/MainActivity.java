@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     EditText edUsername;
     EditText edPassword;
     Button btLogin;
+    Button btRegisterPage;
 
 
     @Override
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         edUsername = (EditText) findViewById(R.id.etUsername);
         edPassword = (EditText) findViewById(R.id.etPassword);
         btLogin = (Button) findViewById(R.id.btLogin);
-
+        btRegisterPage = (Button) findViewById(R.id.btRegisterPage);
 
 
         edUsername.setText("hoangtrai");
@@ -65,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btRegisterPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Register.class);
+                startActivity(intent);
+            }
+        });
+
+
+//        database.createAccount(new Account("hoangtrai", "1"));
 
 //        database.createAccount(new Account("hoangtrai", "1"));
 //        database.createProduct(new Product(R.drawable.nitro5, "Laptop Gaming Acer Nitro 5 AN515 45 R6EV", 19490000, 50, "Máy tính", "Acer vừa ra mắt phiên bản mới nhất của dòng máy gaming Nitro 5 - Nitro 5 AN515-45 R6EV được trang bị bộ vi xử lý AMD Ryzen 5 5600H, card đồ họa Geforce GTX 1650 4GB và tốc độ làm mới 144Hz cho hiệu năng xử lí mạnh mẽ cùng với hỗ trợ bàn phím RGB cá tính giúp mang lại trải nghiệm chơi game tốt nhất. Nitro 5 AN515-45 tích hợp những “vũ khí” mới nhất. Với sự kết hợp từ CPU AMD Ryzen 5 5600H và VGA NVIDIA GeForce GTX 1650, AN515-45 sẽ cho hiệu năng xử lý mạnh mẽ để xử lý tốt các công việc đồ họa đơn giản trên các phần mềm chuyên dụng, tốc độ xử lý thông tin cũng tương đối nhanh và mượt mà."));
