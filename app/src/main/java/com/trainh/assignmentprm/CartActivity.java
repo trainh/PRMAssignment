@@ -39,12 +39,14 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.Selec
         productList = getProductComputer();
         cartAdapter = new CartAdapter(productList, this);
         rvCart.setAdapter(cartAdapter);
+        cartAdapter.notifyDataSetChanged();
+
     }
     private List<Product> getProductComputer() {
         List<Product> products = new ArrayList<Product>();
-        Cursor dataProduct = database.GetData("SELECT product.id, product.image, product.name, product.price, cart.quantity FROM cart INNER JOIN product ON cart.idProduct = product.id");
+        Cursor dataProduct = database.GetData("SELECT cart.id, product.id, product.image, product.name, product.price, cart.quantity FROM cart INNER JOIN product ON cart.idProduct = product.id");
         while (dataProduct.moveToNext()) {
-            Product product = new Product(dataProduct.getInt(0), dataProduct.getInt(1), dataProduct.getString(2), dataProduct.getDouble(3), dataProduct.getInt(4));
+            Product product = new Product(dataProduct.getInt(0), dataProduct.getInt(1), dataProduct.getInt(2), dataProduct.getString(3), dataProduct.getDouble(4), dataProduct.getInt(5));
             Log.d("product", dataProduct.getString(2));
             products.add(product);
         }
@@ -53,11 +55,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.Selec
 
     @Override
     public void selectedProduct(Product product) {
-//        Log.d("product", product.getName());
-//        Intent intent = new Intent(HomeActivity.this, DetailsActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        intent.putExtra("data", product);
-//        startActivity(intent);
+
     }
 
     @Override
