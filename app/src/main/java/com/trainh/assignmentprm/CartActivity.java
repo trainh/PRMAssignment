@@ -8,12 +8,16 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.trainh.assignmentprm.adapter.CartAdapter;
 import com.trainh.assignmentprm.adapter.ProductAdapter;
 import com.trainh.assignmentprm.database.Database;
 import com.trainh.assignmentprm.entities.Product;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,23 +27,34 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.Selec
     CartAdapter cartAdapter;
     RecyclerView rvCart;
     List<Product> productList;
+    TextView txtMoney;
+    Button btnThanhToan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-
+        DecimalFormat formatter = new DecimalFormat("#,###,###");
         database = new Database(getApplicationContext());
         rvCart = (RecyclerView) findViewById(R.id.rvCart);
-
+        txtMoney =(TextView) findViewById(R.id.txtMoney);
+        btnThanhToan = (Button) findViewById(R.id.btnthanhtoan);
         LinearLayoutManager linearLayoutManagerCart = new LinearLayoutManager(this);
         linearLayoutManagerCart.setOrientation(LinearLayoutManager.VERTICAL);
 
         rvCart.setLayoutManager(linearLayoutManagerCart);
         productList = getProductComputer();
+        txtMoney.setText(formatter.format(TongTien()));
         cartAdapter = new CartAdapter(productList, this);
         rvCart.setAdapter(cartAdapter);
         cartAdapter.notifyDataSetChanged();
+
+        btnThanhToan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
     private List<Product> getProductComputer() {
@@ -51,6 +66,15 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.Selec
             products.add(product);
         }
         return products;
+    }
+
+    private double TongTien(){
+        double total = 0;
+        for(int i = 0; i < productList.size();i++){
+
+            total += productList.get(i).getPrice();
+        }
+        return total;
     }
 
     @Override

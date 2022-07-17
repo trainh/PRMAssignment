@@ -63,6 +63,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartAdapterVh>
                 Database database;
                 database = new Database(context.getApplicationContext());
                 database.QueryData("DELETE FROM cart WHERE id = " + product.getIdCart());
+
                 ((CartActivity)context).finish();
                 Intent intent = new Intent((CartActivity)context, CartActivity.class);
                 ((CartActivity)context).startActivity(intent);
@@ -92,6 +93,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartAdapterVh>
                 ((CartActivity)context).finish();
                 Intent intent = new Intent((CartActivity)context, CartActivity.class);
                 ((CartActivity)context).startActivity(intent);
+
             }
         });
     }
@@ -157,8 +159,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartAdapterVh>
         TextView cartQuantity;
         TextView cartTotal;
         Button bntDelete;
+
         ImageView bntTru;
         ImageView bntCong;
+
 
         ImageView imIcon;
         public CartAdapterVh(@NonNull View itemView) {
@@ -169,8 +173,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartAdapterVh>
             cartQuantity = itemView.findViewById(R.id.cartQuantity);
             cartTotal = itemView.findViewById(R.id.cartTotal);
             bntDelete = itemView.findViewById(R.id.bntDelete);
+
             bntTru = itemView.findViewById(R.id.bntTru);
             bntCong = itemView.findViewById(R.id.bntCong);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
