@@ -1,7 +1,6 @@
 package com.trainh.assignmentprm.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,19 +16,17 @@ import com.trainh.assignmentprm.R;
 import com.trainh.assignmentprm.entities.Product;
 
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductAdapterVh> implements Filterable {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartAdapterVh> implements Filterable {
 
     private List<Product> productList;
     private List<Product> getProductListFiltered;
     private Context context;
-    public SelectedProduct selectedProduct;
+    public CartAdapter.SelectedProduct selectedProduct;
 
-    public ProductAdapter(List<Product> productList, SelectedProduct selectedProduct) {
+    public CartAdapter(List<Product> productList, CartAdapter.SelectedProduct selectedProduct) {
         this.productList = productList;
         this.getProductListFiltered = productList;
         this.selectedProduct = selectedProduct;
@@ -37,24 +34,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductA
 
     @NonNull
     @Override
-    public ProductAdapter.ProductAdapterVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CartAdapter.CartAdapterVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
 
-        return new ProductAdapterVh(LayoutInflater.from(context).inflate(R.layout.row_product,null));
+        return new CartAdapter.CartAdapterVh(LayoutInflater.from(context).inflate(R.layout.row_cart,null));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductAdapter.ProductAdapterVh holder, int position) {
+    public void onBindViewHolder(@NonNull CartAdapter.CartAdapterVh holder, int position) {
 
         Product product = productList.get(position);
         DecimalFormat formatter = new DecimalFormat("#,###,###");
-
-        String username = product.getName();
-        String price = formatter.format(product.getPrice()) + " vnd";
-        int image = product.getImage();
-        holder.tvName.setText(username);
-        holder.tvPrice.setText(price);
-        holder.ivProduct.setImageResource(image);
+        holder.cartName.setText(product.getName());
+        holder.cartPrice.setText(formatter.format(product.getPrice()));
+        holder.item_giohang_image.setImageResource(product.getImage());
+        holder.cartQuantity.setText(String.valueOf(product.getQuantity()));
+        holder.cartTotal.setText(formatter.format(product.getQuantity() * product.getPrice()));
     }
 
     @Override
@@ -110,18 +105,24 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductA
 
     }
 
-    public class ProductAdapterVh extends RecyclerView.ViewHolder {
+    public class CartAdapterVh extends RecyclerView.ViewHolder {
 
-        TextView tvName;
-        TextView tvPrice;
-        ImageView ivProduct;
+        ImageView item_giohang_image;
+        TextView cartName;
+        TextView cartPrice;
+        TextView cartQuantity;
+        TextView cartTotal;
+
+
 
         ImageView imIcon;
-        public ProductAdapterVh(@NonNull View itemView) {
+        public CartAdapterVh(@NonNull View itemView) {
             super(itemView);
-            tvName = itemView.findViewById(R.id.tvName);
-            tvPrice = itemView.findViewById(R.id.tvPrice);
-            ivProduct = itemView.findViewById(R.id.ivProduct);
+            item_giohang_image = itemView.findViewById(R.id.item_giohang_image);
+            cartName = itemView.findViewById(R.id.cartName);
+            cartPrice = itemView.findViewById(R.id.cartPrice);
+            cartQuantity = itemView.findViewById(R.id.cartQuantity);
+            cartTotal = itemView.findViewById(R.id.cartTotal);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

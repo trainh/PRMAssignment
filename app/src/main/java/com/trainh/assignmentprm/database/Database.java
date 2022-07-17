@@ -34,6 +34,8 @@ public class Database extends SQLiteOpenHelper {
     private static final String descriptionColumn = "descriptionColumn";
 
     private static final String idProductColumn = "idProduct";
+    private static final String priceProductColumn = "price";
+    private static final String idAccountColumn = "idAccount";
 
 
 //    public Database(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -64,8 +66,9 @@ public class Database extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE " + cartTable + "(" +
                 idColumn + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                quantityColumn + " INTEGER ," +
                 idProductColumn + " INTEGER ," +
+                idAccountColumn + " INTEGER ," +
+                quantityColumn + " INTEGER ," +
                 " FOREIGN KEY (" + idProductColumn + ") REFERENCES " + productTable + "(" +idColumn+ ")" +
                 ")");
     }
@@ -109,6 +112,19 @@ public class Database extends SQLiteOpenHelper {
             contentValues.put(typeColumn, product.getType());
             contentValues.put(descriptionColumn, product.getDescription());
             return sqlite.insert(productTable, null, contentValues) > 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean createCart(int idUser, int idProduct) {
+        try {
+            SQLiteDatabase sqlite = getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(idProductColumn, idProduct);
+            contentValues.put(idAccountColumn, idUser);
+            contentValues.put(quantityColumn, 1);
+            return sqlite.insert(cartTable, null, contentValues) > 0;
         } catch (Exception e) {
             return false;
         }
