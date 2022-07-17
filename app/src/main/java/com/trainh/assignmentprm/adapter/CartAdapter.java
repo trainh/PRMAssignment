@@ -44,7 +44,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartAdapterVh>
     @Override
     public CartAdapter.CartAdapterVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-
         return new CartAdapter.CartAdapterVh(LayoutInflater.from(context).inflate(R.layout.row_cart,null));
     }
 
@@ -64,7 +63,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartAdapterVh>
                 Database database;
                 database = new Database(context.getApplicationContext());
                 database.QueryData("DELETE FROM cart WHERE id = " + product.getIdCart());
-                v.notify();
+                ((CartActivity)context).finish();
+                Intent intent = new Intent((CartActivity)context, CartActivity.class);
+                ((CartActivity)context).startActivity(intent);
             }
         });
     }
