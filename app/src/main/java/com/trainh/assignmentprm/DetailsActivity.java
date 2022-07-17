@@ -85,6 +85,8 @@ public class DetailsActivity extends AppCompatActivity {
                         Toast.makeText(DetailsActivity.this, "Thêm vào giỏ hàng không thành công", Toast.LENGTH_SHORT).show();
                     }
                 }
+                Intent intent = new Intent(DetailsActivity.this, HomeActivity.class);
+                startActivity(intent);
             }
         });
     }
