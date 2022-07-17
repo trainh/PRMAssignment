@@ -75,6 +75,17 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
+    public boolean checkUsernameExisted(String username) {
+        try {
+            SQLiteDatabase sqlite = getWritableDatabase();
+            Cursor cursor = sqlite.rawQuery("SELECT username FROM account WHERE username = ?", new String[]{username});
+            if (cursor.getCount() > 0) return true;
+            else return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public boolean createAccount(Account account) {
         try {
             SQLiteDatabase sqlite = getWritableDatabase();
