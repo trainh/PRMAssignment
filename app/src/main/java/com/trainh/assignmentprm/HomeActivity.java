@@ -9,6 +9,8 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.trainh.assignmentprm.adapter.ProductAdapter;
@@ -29,6 +31,7 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
     RecyclerView rvKeyboard;
     ProductAdapter productAdapterComputer;
     ProductAdapter productAdapterKeyboard;
+    ImageView cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
         productKeyboard = getProductKeyboard();
         rvComputer = (RecyclerView) findViewById(R.id.rvComputer);
         rvKeyboard = (RecyclerView) findViewById(R.id.rvKeyboard);
+        cart = (ImageView) findViewById(R.id.ivCart);
 
         LinearLayoutManager linearLayoutManagerComputer = new LinearLayoutManager(this);
         linearLayoutManagerComputer.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -63,7 +67,13 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
         rvComputer.setAdapter(productAdapterComputer);
         rvKeyboard.setAdapter(productAdapterKeyboard);
 
-
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, CartActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private List<Product> getProductComputer() {

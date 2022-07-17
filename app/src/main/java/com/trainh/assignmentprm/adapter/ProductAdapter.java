@@ -35,7 +35,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductA
         this.selectedProduct = selectedProduct;
     }
 
-
     @NonNull
     @Override
     public ProductAdapter.ProductAdapterVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

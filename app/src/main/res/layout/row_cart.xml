@@ -10,12 +10,13 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/item_giohang_image"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/nitro5"
-            android:layout_width="100dp"
-            android:layout_height="100dp"/>
+            android:src="@drawable/nitro5" />
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -50,7 +51,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/cartNum"
+                    android:id="@+id/cartQuantity"
                     android:text="1"
                     android:gravity="center"
                     android:layout_weight="2"
@@ -70,7 +71,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/cartPrice2"
+                    android:id="@+id/cartTotal"
                     android:text="25000 đ"
                     android:gravity="center|center_vertical"
                     android:layout_weight="5"
