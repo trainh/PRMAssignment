@@ -1,9 +1,15 @@
 package com.trainh.assignmentprm.adapter;
 
+import static android.text.method.TextKeyListener.clear;
+
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -12,7 +18,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.trainh.assignmentprm.CartActivity;
 import com.trainh.assignmentprm.R;
+import com.trainh.assignmentprm.database.Database;
 import com.trainh.assignmentprm.entities.Product;
 
 import java.text.DecimalFormat;
@@ -50,6 +58,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartAdapterVh>
         holder.item_giohang_image.setImageResource(product.getImage());
         holder.cartQuantity.setText(String.valueOf(product.getQuantity()));
         holder.cartTotal.setText(formatter.format(product.getQuantity() * product.getPrice()));
+        holder.bntDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Database database;
+                database = new Database(context.getApplicationContext());
+                database.QueryData("DELETE FROM cart WHERE id = " + product.getIdCart());
+                v.notify();
+            }
+        });
     }
 
     @Override
@@ -112,8 +129,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartAdapterVh>
         TextView cartPrice;
         TextView cartQuantity;
         TextView cartTotal;
-
-
+        Button bntDelete;
 
         ImageView imIcon;
         public CartAdapterVh(@NonNull View itemView) {
@@ -123,7 +139,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartAdapterVh>
             cartPrice = itemView.findViewById(R.id.cartPrice);
             cartQuantity = itemView.findViewById(R.id.cartQuantity);
             cartTotal = itemView.findViewById(R.id.cartTotal);
-
+            bntDelete = itemView.findViewById(R.id.bntDelete);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
