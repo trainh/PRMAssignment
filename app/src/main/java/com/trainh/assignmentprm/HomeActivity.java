@@ -67,6 +67,15 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
         rvComputer.setAdapter(productAdapterComputer);
         rvKeyboard.setAdapter(productAdapterKeyboard);
 
+        ImageView imgMaps = findViewById(R.id.imageView2);
+        imgMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
