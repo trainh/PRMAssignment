@@ -48,12 +48,14 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.Selec
         cartAdapter = new CartAdapter(productList, this);
         rvCart.setAdapter(cartAdapter);
         cartAdapter.notifyDataSetChanged();
+
         btnThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
+
     }
     private List<Product> getProductComputer() {
         List<Product> products = new ArrayList<Product>();

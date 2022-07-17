@@ -75,7 +75,9 @@
                     android:textSize="15sp" />
 
                 <ImageView
-                    android:id="@+id/item_giohang_tru"
+
+                    android:id="@+id/bntTru"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
@@ -93,7 +95,9 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/item_giohang_cong"
+
+                    android:id="@+id/bntCong"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
