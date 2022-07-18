@@ -19,6 +19,7 @@ public class Database extends SQLiteOpenHelper {
 
     private static final String accountTable = "account";
     private static final String productTable = "product";
+    private static final String cartTable = "cart";
 
     private static final String idColumn = "id";
 
@@ -31,6 +32,10 @@ public class Database extends SQLiteOpenHelper {
     private static final String quantityColumn = "quantity";
     private static final String typeColumn = "type";
     private static final String descriptionColumn = "descriptionColumn";
+
+    private static final String idProductColumn = "idProduct";
+    private static final String priceProductColumn = "price";
+    private static final String idAccountColumn = "idAccount";
 
 
 //    public Database(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -58,11 +63,30 @@ public class Database extends SQLiteOpenHelper {
                 typeColumn + " TEXT ," +
                 descriptionColumn + " TEXT " +
                 ")");
+
+        db.execSQL("CREATE TABLE " + cartTable + "(" +
+                idColumn + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                idProductColumn + " INTEGER ," +
+                idAccountColumn + " INTEGER ," +
+                quantityColumn + " INTEGER ," +
+                " FOREIGN KEY (" + idProductColumn + ") REFERENCES " + productTable + "(" +idColumn+ ")" +
+                ")");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+
+    public boolean checkUsernameExisted(String username) {
+        try {
+            SQLiteDatabase sqlite = getWritableDatabase();
+            Cursor cursor = sqlite.rawQuery("SELECT username FROM account WHERE username = ?", new String[]{username});
+            if (cursor.getCount() > 0) return true;
+            else return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public boolean createAccount(Account account) {
@@ -88,6 +112,19 @@ public class Database extends SQLiteOpenHelper {
             contentValues.put(typeColumn, product.getType());
             contentValues.put(descriptionColumn, product.getDescription());
             return sqlite.insert(productTable, null, contentValues) > 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean createCart(int idUser, int idProduct) {
+        try {
+            SQLiteDatabase sqlite = getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(idProductColumn, idProduct);
+            contentValues.put(idAccountColumn, idUser);
+            contentValues.put(quantityColumn, 1);
+            return sqlite.insert(cartTable, null, contentValues) > 0;
         } catch (Exception e) {
             return false;
         }

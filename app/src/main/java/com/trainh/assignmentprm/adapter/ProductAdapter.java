@@ -35,7 +35,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductA
         this.selectedProduct = selectedProduct;
     }
 
-
     @NonNull
     @Override
     public ProductAdapter.ProductAdapterVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -116,14 +115,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductA
         TextView tvName;
         TextView tvPrice;
         ImageView ivProduct;
-
         ImageView imIcon;
         public ProductAdapterVh(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
             tvPrice = itemView.findViewById(R.id.tvPrice);
             ivProduct = itemView.findViewById(R.id.ivProduct);
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

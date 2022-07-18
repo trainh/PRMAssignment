@@ -3,6 +3,7 @@ package com.trainh.assignmentprm.entities;
 import java.io.Serializable;
 
 public class Product implements Serializable {
+    private int idCart;
     private int id;
     private int image;
     private String name;
@@ -18,6 +19,15 @@ public class Product implements Serializable {
         this.quantity = quantity;
         this.type = type;
         this.description = description;
+    }
+
+    public Product(int idCart, int id, int image, String name, double price, int quantity) {
+        this.idCart = idCart;
+        this.id = id;
+        this.image = image;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
     }
 
     public Product(int id, int image, String name, double price, int quantity, String type, String description) {
@@ -80,6 +90,14 @@ public class Product implements Serializable {
 
     public String getDescription() {
         return description;
+    }
+
+    public int getIdCart() {
+        return idCart;
+    }
+
+    public void setIdCart(int idCart) {
+        this.idCart = idCart;
     }
 
     public void setDescription(String description) {
