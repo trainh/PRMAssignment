@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +34,7 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
     ProductAdapter productAdapterKeyboard;
     ImageView cart;
     TextView tvNoti;
+    ImageView imgMaps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
         rvKeyboard = (RecyclerView) findViewById(R.id.rvKeyboard);
         cart = (ImageView) findViewById(R.id.ivCart);
         tvNoti = (TextView) findViewById(R.id.tvNoti);
+        ImageView imgMaps = findViewById(R.id.imageView2);
 
 
         LinearLayoutManager linearLayoutManagerComputer = new LinearLayoutManager(this);
@@ -71,11 +74,12 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Se
         rvKeyboard.setAdapter(productAdapterKeyboard);
 
         tvNoti.setText(String.valueOf(getProduct().size()));
-        ImageView imgMaps = findViewById(R.id.imageView2);
+
         imgMaps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("https://www.google.com/maps/place/GEARVN+Ho%C3%A0ng+Hoa+Th%C3%A1m/@10.7989457,106.6452575,17z/data=!3m1!4b1!4m5!3m4!1s0x3175294a0c97a181:0x6aece518177f9a92!8m2!3d10.7989404!4d106.6474462"));
                 startActivity(intent);
             }
         });
